@@ -26,6 +26,7 @@ public class Main {
 			changeState(student, num);
 
 		}
+        //20개씩 끊어서 줄바꿈
 		for(int i = 0; i < switchArr.length; i++) {
 			sb.append(switchArr[i]).append(" ");
 			if((i + 1) % 20 == 0)
