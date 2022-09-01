@@ -65,7 +65,7 @@ public class Main {
 			}
 			
 			if(flag) {
-				sb.append("error");
+				System.out.println("error");
 			}
 			else {
 				sb.append("[");
@@ -86,10 +86,11 @@ public class Main {
 				else {
 					sb.append("]");
 				}
+				System.out.println(sb);
+				sb.setLength(0);
 			}
 			deque.clear();
-			sb.append("\n");
+			//sb.append("\n");
 		}
-		System.out.println(sb);
 	}
 }
