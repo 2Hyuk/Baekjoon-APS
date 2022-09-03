@@ -2,7 +2,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -11,13 +12,13 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		StringBuilder sb = new StringBuilder();
-		Stack<String> leftStack = new Stack<>();
-		Stack<String> rightStack = new Stack<>();
+		LinkedList<String> list = new LinkedList<>();
+		ListIterator<String> iter = list.listIterator();
 		
 		String initStr = br.readLine();
 		int M = Integer.parseInt(br.readLine());
 		for(int i = 0; i < initStr.length(); i++) {
-			leftStack.push(""+initStr.charAt(i));
+			iter.add(""+initStr.charAt(i));
 		}
 		
 		for(int i = 0; i < M; i++) {
@@ -26,32 +27,30 @@ public class Main {
 			
 			switch(order) {
 				case "L":
-					if(!leftStack.isEmpty())
-						rightStack.push(leftStack.pop());
+					if(iter.hasPrevious())
+						iter.previous();
 					break;
 				case "D":
-					if(!rightStack.isEmpty())
-						leftStack.push(rightStack.pop());
+					if(iter.hasNext())
+						iter.next();
 					break;
 				case "B":
-					if(!leftStack.isEmpty())
-						leftStack.pop();
+					if(iter.hasPrevious()) {
+						iter.previous();
+						iter.remove();
+					}
 					break;
 				case "P":
-					leftStack.push(st.nextToken());
+					iter.add(st.nextToken());
 					break;
 				default:
 					break;
 			}
 		}
-		while(!leftStack.isEmpty()) {
-			rightStack.push(leftStack.pop());
-		}
 		
-		while(!rightStack.isEmpty()) {
-			sb.append(rightStack.pop());
+		for(String s : list) {
+			sb.append(s);
 		}
-		
 		System.out.println(sb);
 	}
 }
