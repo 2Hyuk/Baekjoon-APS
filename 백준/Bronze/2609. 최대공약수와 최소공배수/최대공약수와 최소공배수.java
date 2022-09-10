@@ -18,18 +18,17 @@ public class Main {
 		}
 		// 최대공약수
 		System.out.println(gdc(a, b));
+		//최소공배수
 		System.out.println(lcm(a, b));
 	}
 	
 	static int gdc(int a, int b){
-		while(true) {
+		while(b > 0) {
 			int r = a % b;
-			if(r == 0)
-				break;
 			a = b;
 			b = r;
 		}
-		return b;
+		return a;
 	}
 	
 	static int lcm(int a, int b) {
