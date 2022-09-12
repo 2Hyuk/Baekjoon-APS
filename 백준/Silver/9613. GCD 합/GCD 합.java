@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class Main {
 	static boolean[] ch;
 	static int[] arr;
+	// 1000000 이 100개 가 들어올 경우에 int형의 범위를 넘어선다.
 	static double sum;
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		// 모든 쌍에 대한 최대공약수의 합을 구한다.
@@ -29,6 +30,7 @@ public class Main {
 	}
 	
 	static void combi(int idx, int cnt) {
+		//2개를 골랐을 경우 최대 최소값을 찾아 최대공약수를 구한다.
 		if(cnt == 2) {
 			int i, j;
 			
@@ -41,10 +43,11 @@ public class Main {
 					break;
 			}
 			
-			sum += gcd(Math.max(arr[i], arr[j]), Math.min(arr[i], arr[j]));
+			sum += gcd(arr[i], arr[j]);
 			return;
 		}
 		
+		//모든쌍을 만들어준다.
 		for(int i = idx; i < arr.length; i++) {
 			if(ch[i] == false) {
 				ch[i] = true;
