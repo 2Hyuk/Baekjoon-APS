@@ -1,20 +1,25 @@
 
-import java.util.Collections;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// N:동생 수, S: 수빈이의 현재 위치
 		// 하나의 D값으로 모든 동생의 위치를 찾을 수 있어야 하며 D값은 그중에서 가장 큰 수 이어야 한다. -> 최대공약수
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
-		int S = sc.nextInt();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int N = Integer.parseInt(st.nextToken());
+		int S = Integer.parseInt(st.nextToken());
 		int[] arr = new int[N];
 		
 		// 수빈이의 위치와 동생들의 위치의 차를 구해서 배열에 넣는다.
 		// 배열에 넣은 값들의 최대공약수를 구해야 한다.
+		st = new StringTokenizer(br.readLine());
 		for(int i = 0; i < N; i++) {
-			int A = sc.nextInt();
+			int A = Integer.parseInt(st.nextToken());
 			arr[i] = Math.abs(A - S);
 		}
 		
@@ -52,11 +57,9 @@ public class Main {
 	
 	
 	static int gcd(int a, int b) {
-		while(b > 0) {
-			int r = a % b;
-			a = b;
-			b = r;
-		}
-		return a;
+		if(b == 0) 
+			return a;
+		
+		return gcd(b, a % b);
 	}
 }
