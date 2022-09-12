@@ -38,7 +38,7 @@ public class Main {
 			int gcd = 0;
 			boolean flag = false;
 			for(int i = 0; i < arr.length - 1; i++) {
-				gcd = gcd(Math.max(arr[i], arr[i+1]), Math.min(arr[i], arr[i+1]));
+				gcd = gcd(arr[i], arr[i+1]);
 				arr[i+1] = gcd;
 				if(gcd == 1) {
 					flag = true;
