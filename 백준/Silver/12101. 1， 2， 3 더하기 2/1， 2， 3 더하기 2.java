@@ -4,40 +4,36 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+	static List<String> list;
+	static int n;
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
+		n = sc.nextInt();
 		int k = sc.nextInt();
 		
-		List<String>[] arr = new ArrayList[n+3];
-		for(int i = 0; i <=n+2; i++) {
-			arr[i] = new ArrayList<>();
-		}
+		list = new ArrayList<>();
+		recur(0, "");
+		Collections.sort(list);
 		
-		arr[1].add("1");
-		arr[2].add("1+1");
-		arr[2].add("2");
-		arr[3].add("1+1+1");
-		arr[3].add("1+2");
-		arr[3].add("2+1");
-		arr[3].add("3");
-		
-		
-		for(int i = 4; i <=n; i++) {
-			for(int j = 3; j >= 1; j--) {
-				for(String s : arr[i-j]) {
-					arr[i].add(s + "+" + j);
-				}
-			}
-		}
-		
-		Collections.sort(arr[n]);
-		
-		if(arr[n].size() >= k) {
-			System.out.println(arr[n].get(k-1));
+		if(list.size() >= k) {
+			System.out.println(list.get(k-1).substring(1));
 		}
 		else {
 			System.out.println(-1);
 		}
+	}
+
+	public static void recur(int sum, String num) {
+		if(sum == n) {
+			list.add(num);
+			return;
+		}
+		else if(sum > n)
+			return;
+		
+		recur(sum + 1, num + "+1");
+		recur(sum + 2, num + "+2");
+		recur(sum + 3, num + "+3");
 	}
 }
