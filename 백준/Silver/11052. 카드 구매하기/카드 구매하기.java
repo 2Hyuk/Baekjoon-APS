@@ -6,7 +6,11 @@ import java.util.StringTokenizer;
 public class Main {
 	// 1장을 비싸게 사는 것은 1장짜리를 사는것
 	// 2장을 비싸게 사는 것은 1장짜리를 2개사는 것과 2장짜리를 1개사는것중 비싼 것
-	// 3장을 비싸게 사는 것은 2장을 비싸게 사는 경우에 1장을 사는것, 3장을 사는 것 중 비싼것
+	// 3장을 비싸게 사는 것은 1장짜리 1개+2장 1개, 3장 1개 사는것 중 비싼 것
+	// n장을 구매할 때 가장 비싼 값을 dp[n]이라고 하고, n장을 한번에 구매하는 가격을 p라고 한다.
+	// 즉, dp[n]은 (dp[1] + dp[n-1], dp[2] + dp[n-2], ...., dp[n-1] + dp[1], p)의 최대값이 된다.
+	// 이때 제일 처음 값과 끝의 값은 순서만 다르고 값은 같으므로, 범위는 n/2까지만 구하면 된다.
+	// 재귀를 통해 n장을 줄여가며 n장을 구매할 때 가장 비싼 경우를 구한다.
 	static int[] price;
 	static int[] dp;
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -24,10 +28,11 @@ public class Main {
 	}
 	
 	public static int recur(int n) {
-		if(n == 0) return 0;
 		if(dp[n] == 0) {
+			// n장을 한번에 구매할 떄의 가격
 			int max = price[n];
-			for(int i = 1; i < n; i++) {
+			for(int i = 1; i <= n / 2; i++) {
+				// n장을 구매할 때의 가장 비싼 값에대해 모든 경우의 수를 구한다.
 				max = Math.max(recur(i) + recur(n - i), max);
 			}
 			dp[n] = max;
