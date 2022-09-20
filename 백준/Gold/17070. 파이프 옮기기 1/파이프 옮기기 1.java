@@ -32,29 +32,22 @@ public class Main {
 		if(r < 1 ||  r > N || c < 1 || c > N || map[r][c] == 1) {
 			return;
 		}
-		if(r == N && c == N) {
+		else if(r == N && c == N) {
 			count++;
 			return;
 		}
-		switch(dir) {
-			case 0: // 오른쪽방향을 보고있을 때
-					movePipe(0, r, c+1);
-				if((map[r+1][c+1] == 0) && (map[r][c+1] == 0) && (map[r+1][c] == 0))
-					movePipe(1, r+1, c+1);
-				break;
-			case 1: // 대각성 방향을 보고 있을 떄
-				movePipe(0, r, c+1);
-				movePipe(2, r+1, c);
-				if((map[r+1][c+1] == 0) && (map[r][c+1] == 0) && (map[r+1][c] == 0))
-					movePipe(1, r+1, c+1);
-				break;
-			case 2: // 아래방향을 보고 있을 때
-				movePipe(2, r+1, c);
-				if((map[r+1][c+1] == 0) && (map[r][c+1] == 0) && (map[r+1][c] == 0))
-					movePipe(1, r+1, c+1);
-				break;
-			default:
-				System.out.println("Error");
-		}
+		
+		//오른쪽으로 가는 경우
+		if(dir != 2)
+			movePipe(0, r, c+1);
+		
+		//아래로 가는 경우
+		if(dir != 0)
+			movePipe(2, r+1, c);
+		
+		//대각선으로 가는 경우
+		if((map[r+1][c+1] == 0) && (map[r][c+1] == 0) && (map[r+1][c] == 0))
+			movePipe(1, r+1, c+1);;
+		
 	}
 }
