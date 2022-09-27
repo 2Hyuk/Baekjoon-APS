@@ -34,7 +34,7 @@ public class Main {
 	//1번을 무조건 포함하고 나머지 선수 들 중에서 뽑는다.
 	static void makeTeam(int idx, int sidx) {
 		// 1명을 무조건 선택했고, 1명을 선택 안하는 범위
-		if(sidx >= 1 && sidx <= N - 2) {
+		if(sidx >= 1 && sidx <= N - 1) {
 			int A = calcSynergy()[0];
 			int B = calcSynergy()[1];
 			min = Math.min(min, Math.abs(A - B));
