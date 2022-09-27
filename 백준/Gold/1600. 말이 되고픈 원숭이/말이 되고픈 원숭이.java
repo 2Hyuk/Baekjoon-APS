@@ -49,7 +49,7 @@ public class Main {
 			for (int i = 0; i < 4; i++) {
 				int nr = node.row + dr[i];
 				int nc = node.col + dc[i];
-
+				
 				if (nr < 0 || nc < 0 || nr >= H || nc >= W)
 					continue;
 
