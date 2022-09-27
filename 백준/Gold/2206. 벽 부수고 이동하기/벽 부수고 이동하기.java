@@ -6,6 +6,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/*
+ * isBreak = 0 이면 벽을 안뚫은 것
+ * isBreak = 1 이면 벽을 뚫은 것
+ * 벽을 뚫은 것에 대해서는 뚫은 녀석의 체크배열을 사용하요 안뚫은 녀석에 대해서는 안뚫은 녀석의 체크배열을 따로따로 쓴다.
+ */
 public class Main {
 	static class Node {
 		int row, col, dist;
@@ -50,12 +55,14 @@ public class Main {
 
 				if (nr < 0 || nr >= N || nc < 0 || nc >= M)
 					continue;
-
-				if (map[nr][nc].equals("1") && move.isBreak == 0 && check[1][nr][nc] == false) {
+				
+				// 벽이 막혀있을 때 뚫고 지나가는 경우 ->isBreak를 1로 변경하고 진행한다.
+				if (map[nr][nc].equals("1") && move.isBreak == 0) {
 					queue.offer(new Node(nr, nc, move.dist + 1, 1));
 					check[1][nr][nc] = true;
 				}
 
+				// 안뚫고 지나가는 경우
 				else if (map[nr][nc].equals("0") && check[move.isBreak][nr][nc] == false) {
 					queue.offer(new Node(nr, nc, move.dist + 1, move.isBreak));
 					check[move.isBreak][nr][nc] = true;
