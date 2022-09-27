@@ -79,11 +79,11 @@ public class Solution {
 				if (nr < 0 || nr >= N || nc < 0 || nc >= N)
 					continue;
 
-				if (map[nr][nc] < height && !node.prevRC[nr][nc]) {
+				if (map[nr][nc] < height && !check[nr][nc]) {
 					queue.offer(new Node(nr, nc, map[nr][nc], dist + 1, dig , check));
 				}
 
-				if (map[nr][nc] >= height && dig == 0 && !node.prevRC[nr][nc]) {
+				if (map[nr][nc] >= height && dig == 0 && !check[nr][nc]) {
 					for (int j = 1; j <= K; j++) {
 						if (map[nr][nc] - j >= 0 && map[nr][nc] - j < height) {
 							queue.offer(new Node(nr, nc, map[nr][nc] - j, dist + 1, dig + j, check));
