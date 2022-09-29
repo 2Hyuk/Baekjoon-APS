@@ -22,15 +22,11 @@ public class Main {
 		
 		//첫번째꺼 안누름
 		tmp = input.clone();
-		for (int i = 0; i < tmp.length - 2; i++) {
+		for (int i = 0; i < tmp.length - 1; i++) {
 			if (!tmp[i].equals(result[i])) {
 				clickSwitch(i + 1);
 				ans1++;
 			}
-		}
-		if(!tmp[tmp.length-2].equals(result[tmp.length-2])) {
-			clickSwitch(tmp.length-1);
-			ans1++;
 		}
 		if(!equal()) {
 			ans1 = Integer.MAX_VALUE;
@@ -40,15 +36,11 @@ public class Main {
 		tmp = input.clone();
 		clickSwitch(0);
 		ans2++;
-		for (int i = 0; i < tmp.length - 2; i++) {
+		for (int i = 0; i < tmp.length - 1; i++) {
 			if (!tmp[i].equals(result[i])) {
 				clickSwitch(i + 1);
 				ans2++;
 			}
-		}
-		if(!tmp[tmp.length-2].equals(result[tmp.length-2])) {
-			clickSwitch(tmp.length-1);
-			ans2++;
 		}
 		if(!equal()) {
 			ans2 = Integer.MAX_VALUE;
