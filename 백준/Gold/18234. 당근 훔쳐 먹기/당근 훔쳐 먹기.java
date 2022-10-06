@@ -43,7 +43,7 @@ public class Main {
 		Collections.sort(list);
 		for(int i = T-N; i < T; i++) {
 			Carrot carrot = list.get(list.size() - 1);
-			result += (long)( carrot.w + (long)(carrot.p * (long)i));
+			result += ( carrot.w + (carrot.p * (long)i));
 			list.remove(list.size() - 1);
 		}
 		System.out.println(result);
