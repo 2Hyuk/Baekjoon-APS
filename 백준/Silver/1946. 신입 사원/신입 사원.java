@@ -1,17 +1,23 @@
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc =  new Scanner(System.in);
-		int T = sc.nextInt();
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		int T = Integer.parseInt(br.readLine());
 		for(int tc = 1; tc <= T; tc++) {
-			int N = sc.nextInt();
+			int N = Integer.parseInt(br.readLine());
 			int[] arr = new int[N+1];
 			
 			for(int i = 1; i <= N; i++) {
-				int grade1 = sc.nextInt();
-				int grade2 = sc.nextInt();
+				st = new StringTokenizer(br.readLine());
+				int grade1 = Integer.parseInt(st.nextToken());
+				int grade2 = Integer.parseInt(st.nextToken());
 				arr[grade1] = grade2;
 			}
 			
@@ -23,7 +29,8 @@ public class Main {
 					min = arr[i];
 				}
 			}
-			System.out.println(ans);
+			sb.append(ans).append("\n");
 		}
+		System.out.println(sb);
 	}
 }
