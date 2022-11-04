@@ -55,10 +55,7 @@ public class Main {
 			union(0, py);
 		}
 
-		// 갱신한다.
-		for (int i = 1; i <= N; i++) {
-			findSet(i);
-		}
+		
 		
 		//파티수를 찾는다.
 		for(int i = 0; i < M; i++) {
