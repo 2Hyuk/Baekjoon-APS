@@ -4,69 +4,72 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-	static class Stack {
-		int[] stack = new int[10000];
-		int size;
-		int top = -1;
-
-		boolean isEmpty() {
-			if (size == 0)
-				return true;
-			return false;
+	public static class Stack{
+		private int[] stack;
+		private int top;
+		
+		public Stack(int N) {
+			this.stack = new int[N];
+			top = 0;
 		}
-
-		int size() {
-			return size;
+		
+		public int size() {
+			return this.top;
 		}
-
-		int peek() {
-			if(isEmpty()) {
-				return -1;
-			}
-			return stack[top];
+		
+		public int empty() {
+			if(this.size() > 0)
+				return 0;
+			return 1;
 		}
-
-		void push(int data) {
-			stack[++top] = data;
-			size++;
+		
+		public void push(int X) {
+			this.stack[top++] = X;
 		}
-
-		int pop() {
-			if (isEmpty())
-				return -1;
-			size--;
-			return stack[top--];
+		
+		public int top() {
+			if(this.size() > 0)
+				return this.stack[this.top - 1];
+			return -1;
+		}
+		
+		public int pop() {
+			if(this.size() > 0)
+				return this.stack[--this.top];
+			return -1;
 		}
 	}
-
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
-		Stack stack = new Stack();
 		int N = Integer.parseInt(br.readLine());
-		for (int i = 0; i < N; i++) {
+		Stack stack = new Stack(N);
+		
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			String order = st.nextToken();
-			switch (order) {
+			
+			switch(order) {
 			case "push":
-				int data = Integer.parseInt(st.nextToken());
-				stack.push(data);
-				break;
-			case "pop":
-				System.out.println(stack.pop());
-				break;
-			case "size":
-				System.out.println(stack.size());
-				break;
-			case "empty":
-				System.out.println(stack.isEmpty() == true ? 1 : 0);
+				int X = Integer.parseInt(st.nextToken());
+				stack.push(X);
 				break;
 			case "top":
-				System.out.println(stack.peek());
+				sb.append(stack.top()).append("\n");
+				break;
+			case "pop":
+				sb.append(stack.pop()).append("\n");
+				break;
+			case "size":
+				sb.append(stack.size()).append("\n");
+				break;
+			case "empty":
+				sb.append(stack.empty()).append("\n");
 				break;
 			}
 		}
-
+		System.out.println(sb);
+		
 	}
-
 }
