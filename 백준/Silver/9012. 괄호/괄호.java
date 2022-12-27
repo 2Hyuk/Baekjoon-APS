@@ -7,23 +7,33 @@ public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());
+		Stack<Character> stack = new Stack<>();
+		StringBuilder sb = new StringBuilder();
 		
-		for(int testCase = 1; testCase <= T; testCase++) {
-			Stack<Character> stack = new Stack<>();
-			String inputPS = br.readLine();
-			for(int i = 0; i < inputPS.length(); i++) {
-				if(inputPS.charAt(i) == ')') {
+		for(int i = 0; i < T; i++) {
+			String PS = br.readLine();
+			boolean isVPS = true;
+			stack.clear();
+			
+			for(int j = 0; j < PS.length(); j++) {
+				char ch = PS.charAt(j);
+				if(ch == '(') {
+					stack.push(ch);
+				}
+				else {
 					if(stack.isEmpty()) {
-						stack.push(inputPS.charAt(i));
+						isVPS = false;
 						break;
 					}
 					stack.pop();
 				}
-				else{
-					stack.push(inputPS.charAt(i));
-				}
 			}
-			System.out.println(stack.isEmpty()? "YES" : "NO");
+			if(!stack.isEmpty()) {
+				isVPS = false;
+			}
+			
+			sb.append(isVPS == true ? "YES" : "NO").append("\n");
 		}
+		System.out.println(sb);
 	}
 }
