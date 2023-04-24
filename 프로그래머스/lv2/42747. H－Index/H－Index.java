@@ -8,9 +8,9 @@ class Solution {
         for(int i = 0; i < n; i++){
             int h = citations[i];
             // h이전의 개수가 h이하, h이후의 개수가 h이상이면
-            int smaller = Math.min(citations[i], citations.length-i);
-        answer = Math.max(answer, smaller);
-        if(answer >= citations.length-i) break;
+            if(i + 1 <= h && h <= n - i){
+                answer = Math.max(answer, h);
+            }
         }
         return answer;
     }
