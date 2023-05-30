@@ -1,0 +1,7 @@
+-- 코드를 입력하세요
+SELECT MCDP_CD as '진료과 코드', count(MCDP_CD) as '5월 예약건수'
+FROM APPOINTMENT
+WHERE month(APNT_YMD) = 5
+GROUP BY MCDP_CD
+# HAVING APNT_CNCL_YN = 'N';
+ORDER BY count(MCDP_CD) ASC, MCDP_CD ASC;
