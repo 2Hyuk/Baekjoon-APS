@@ -14,8 +14,6 @@ class Solution {
     public static boolean[][] visited;
     public static Queue<Point> q;
     public static int time, N, M;
-    public static int[] dr = {0, -1, 0, 1};
-    public static int[] dc = {-1, 0, 1, 0};
     
     public int solution(String[] maps) {
         N = maps.length;
@@ -82,6 +80,8 @@ class Solution {
     }
     
     public void move(int row, int col, int time){
+        int[] dr = {0, -1, 0, 1};
+        int[] dc = {-1, 0, 1, 0};
         
         for(int i = 0; i < 4; i++){
                 int nr = row + dr[i];
