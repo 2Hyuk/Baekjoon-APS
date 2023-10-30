@@ -1,57 +1,48 @@
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
-	static List<Integer> list = new ArrayList<>();
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
-		int M = sc.nextInt();
-		int minCnt = 0;
-		int[] arr = new int[M];
-		for (int i = 0; i < M; i++) {
-			arr[i] = sc.nextInt();
-		}
-		for (int i = 0; i < N; i++) {
-			list.add(i+1);
-		}
-		for (int i = 0; i < M; i++) {
-			int operation = direction(arr[i]);
-			while(list.get(0) != arr[i]) {
-				if (operation == 2) {
-					leftShift();
-				} 
-				else {
-					rightShift();
-				}
-				minCnt++;
-			}
-			list.remove(0);
-		}
-		System.out.println(minCnt);
-	}
-	
-	static int direction(int ele) {
-		int idx = 0;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i) == ele) {
-				idx = i;
-				break;
-			}
-		}
-		if (idx <= list.size() / 2) {
-			return 2;
-		}
-		return 3;
-	}
-	
-	static void leftShift() {
-		list.add(list.remove(0));
-	}
+    
+    public static void main(String[] args) throws IOException {
+        // 입력 값 받기
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-	static void rightShift() {
-		list.add(0, list.remove(list.size()-1));
-	}
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        List<Integer> list = new ArrayList<>();
+
+        for(int i = 1; i <= N; i++){
+            list.add(i);
+        }
+
+        int answer = 0;
+
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < M; i++){
+            int ele = Integer.parseInt(st.nextToken());
+            int idx = list.indexOf(ele);
+
+            // 오른쪽으로 시프트해서 뽑는게 더 빠름(3번연산)
+            if(idx >= (list.size() + 1) / 2){
+                for(int j = 0; j < list.size() - idx; j++){
+                    answer++;
+                    list.add(0, list.remove(list.size() - 1));
+                }
+            }
+            // 왼쪽 시프트해서 뽑는게 더 빠름(2번연산)
+            else{
+                for(int j = 0; j < idx; j++){
+                    answer++;
+                    list.add(list.remove(0));
+                }
+            }
+            // 정답뽑기(1번연산)
+            list.remove(0);
+        }
+        System.out.println(answer);
+    }
 }
