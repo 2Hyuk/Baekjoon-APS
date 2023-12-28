@@ -47,9 +47,12 @@ public class Main {
             pq.add(new Node(data[0].get(i), sw));
         }
 
+        StringBuilder sb = new StringBuilder();
         while(!pq.isEmpty()){
-            System.out.print(pq.poll().n + " ");
+            sb.append(pq.poll().n).append(" ");
         }
+
+        System.out.println(sb);
 
 
     }
